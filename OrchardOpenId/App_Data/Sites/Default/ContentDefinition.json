@@ -1,0 +1,305 @@
+{
+  "ContentTypeDefinitionRecords": [
+    {
+      "Name": "Menu",
+      "DisplayName": "Menu",
+      "Settings": {
+        "ContentTypeSettings": {
+          "Listable": true,
+          "Draftable": true,
+          "Versionable": true
+        }
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "TitlePart",
+          "Name": "TitlePart",
+          "Settings": {
+            "ContentTypePartSettings": {
+              "Position": "0"
+            }
+          }
+        },
+        {
+          "PartName": "AliasPart",
+          "Name": "AliasPart",
+          "Settings": {
+            "AliasPartSettings": {
+              "Pattern": "{{ ContentItem | display_text | slugify }}"
+            },
+            "ContentTypePartSettings": {
+              "Position": "1"
+            }
+          }
+        },
+        {
+          "PartName": "MenuPart",
+          "Name": "MenuPart",
+          "Settings": {
+            "ContentTypePartSettings": {
+              "Position": "2"
+            }
+          }
+        },
+        {
+          "PartName": "MenuItemsListPart",
+          "Name": "MenuItemsListPart",
+          "Settings": {}
+        }
+      ]
+    },
+    {
+      "Name": "LinkMenuItem",
+      "DisplayName": "Link Menu Item",
+      "Settings": {
+        "ContentTypeSettings": {
+          "Stereotype": "MenuItem"
+        }
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "LinkMenuItemPart",
+          "Name": "LinkMenuItemPart",
+          "Settings": {
+            "ContentTypePartSettings": {
+              "Position": "0"
+            }
+          }
+        },
+        {
+          "PartName": "LinkMenuItem",
+          "Name": "LinkMenuItem",
+          "Settings": {
+            "ContentTypePartSettings": {
+              "Position": "1"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "Name": "ContentMenuItem",
+      "DisplayName": "Content Menu Item",
+      "Settings": {
+        "ContentTypeSettings": {
+          "Stereotype": "MenuItem"
+        },
+        "FullTextAspectSettings": {}
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "ContentMenuItemPart",
+          "Name": "ContentMenuItemPart",
+          "Settings": {
+            "ContentTypePartSettings": {
+              "Position": "0"
+            }
+          }
+        },
+        {
+          "PartName": "ContentMenuItem",
+          "Name": "ContentMenuItem",
+          "Settings": {
+            "ContentTypePartSettings": {
+              "Position": "1"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "Name": "HtmlMenuItem",
+      "DisplayName": "Html Menu Item",
+      "Settings": {
+        "ContentTypeSettings": {
+          "Stereotype": "MenuItem"
+        },
+        "FullTextAspectSettings": {}
+      },
+      "ContentTypePartDefinitionRecords": [
+        {
+          "PartName": "HtmlMenuItemPart",
+          "Name": "HtmlMenuItemPart",
+          "Settings": {
+            "ContentTypePartSettings": {
+              "Position": "0"
+            }
+          }
+        },
+        {
+          "PartName": "HtmlMenuItem",
+          "Name": "HtmlMenuItem",
+          "Settings": {
+            "ContentTypePartSettings": {
+              "Position": "1"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "ContentPartDefinitionRecords": [
+    {
+      "Name": "LiquidPart",
+      "Settings": {
+        "ContentPartSettings": {
+          "Attachable": true,
+          "Description": "Provides a Liquid formatted body for your content item."
+        }
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "CommonPart",
+      "Settings": {
+        "ContentPartSettings": {
+          "Attachable": true,
+          "Description": "Provides an editor for the common properties of a content item."
+        }
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "AliasPart",
+      "Settings": {
+        "ContentPartSettings": {
+          "Attachable": true,
+          "Description": "Provides a way to define custom aliases for content items."
+        }
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "WidgetsListPart",
+      "Settings": {
+        "ContentPartSettings": {
+          "Attachable": true,
+          "Description": "Provides a way to add widgets to Layout zones for your content item."
+        }
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "FlowPart",
+      "Settings": {
+        "ContentPartSettings": {
+          "Attachable": true,
+          "Description": "Provides a customizable body for your content item where you can build a content structure with widgets."
+        }
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "BagPart",
+      "Settings": {
+        "ContentPartSettings": {
+          "Attachable": true,
+          "Reusable": true,
+          "Description": "Provides a collection behavior for your content item where you can place other content items."
+        }
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "HtmlBodyPart",
+      "Settings": {
+        "ContentPartSettings": {
+          "Attachable": true,
+          "Description": "Provides an HTML Body for your content item."
+        }
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "ListPart",
+      "Settings": {
+        "ContentPartSettings": {
+          "Attachable": true,
+          "Description": "Add a list behavior."
+        }
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "MarkdownBodyPart",
+      "Settings": {
+        "ContentPartSettings": {
+          "Attachable": true,
+          "Description": "Provides a Markdown formatted body for your content item."
+        }
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "TitlePart",
+      "Settings": {
+        "ContentPartSettings": {
+          "Attachable": true,
+          "Description": "Provides a Title for your content item.",
+          "DefaultPosition": "0"
+        }
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "MenuPart",
+      "Settings": {},
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "MenuItemPart",
+      "Settings": {},
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "LinkMenuItemPart",
+      "Settings": {
+        "ContentPartSettings": {
+          "Attachable": true,
+          "Description": "Provides a menu link behavior for your content item."
+        }
+      },
+      "ContentPartFieldDefinitionRecords": []
+    },
+    {
+      "Name": "ContentMenuItemPart",
+      "Settings": {
+        "ContentPartSettings": {
+          "Attachable": true,
+          "DisplayName": "Content Menu Item",
+          "Description": "Provides a menu link behavior with the Content Picker for your content item."
+        }
+      },
+      "ContentPartFieldDefinitionRecords": [
+        {
+          "FieldName": "ContentPickerField",
+          "Name": "SelectedContentItem",
+          "Settings": {
+            "ContentPartFieldSettings": {
+              "DisplayName": "Selected Content Item",
+              "Position": "0"
+            },
+            "ContentPickerFieldSettings": {
+              "Required": true,
+              "DisplayAllContentTypes": true,
+              "DisplayedContentTypes": []
+            },
+            "ContentIndexSettings": {}
+          }
+        }
+      ]
+    },
+    {
+      "Name": "HtmlMenuItemPart",
+      "Settings": {
+        "ContentPartSettings": {
+          "Attachable": true,
+          "DisplayName": "Html Menu Item",
+          "Description": "Provides a menu link behavior with a field to display html for the link text."
+        }
+      },
+      "ContentPartFieldDefinitionRecords": []
+    }
+  ],
+  "Identifier": "4rzprz6gmnfajrb5a9grq7smmz"
+}

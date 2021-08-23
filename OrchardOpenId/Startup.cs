@@ -12,10 +12,22 @@ namespace OrchardOpenId
 {
     public class Startup
     {
+        public const string CORS_POLICY = "CorsPolicy";
+
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: CORS_POLICY,
+                                  builder =>
+                                  {
+                                      builder.WithOrigins("http://localhost:4200");
+                                      builder.AllowAnyMethod();
+                                      builder.AllowAnyHeader();
+                                  });
+            });
             services.AddOrchardCms();
         }
 
@@ -28,6 +40,8 @@ namespace OrchardOpenId
             }
 
             app.UseRouting();
+
+            app.UseCors(CORS_POLICY);
 
             app.UseOrchardCore();
         }

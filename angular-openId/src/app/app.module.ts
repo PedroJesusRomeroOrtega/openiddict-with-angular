@@ -10,23 +10,41 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { AuthConfigModule } from './auth/auth-config.module';
+import { EventTypes, PublicEventsService } from 'angular-auth-oidc-client';
+import { filter } from 'rxjs/operators';
+import { RouterModule } from '@angular/router';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavigationComponent
-  ],
+  declarations: [AppComponent, NavigationComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    RouterModule.forRoot([
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'home', component: HomeComponent },
+      // { path: 'forbidden', component: UnauthorizedComponent },
+      // { path: 'unauthorized', component: UnauthorizedComponent },
+    ]),
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    AuthConfigModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private readonly eventService: PublicEventsService) {
+    this.eventService
+      .registerForEvents()
+      .pipe(
+        filter((notification) => notification.type === EventTypes.ConfigLoaded)
+      )
+      .subscribe((config) => console.log('ConfigLoaded', config));
+  }
+}

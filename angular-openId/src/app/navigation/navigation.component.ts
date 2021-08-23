@@ -17,14 +17,12 @@ export class NavigationComponent {
       shareReplay()
     );
 
-  state$: Observable<{ isAuthenticated: boolean }>;
+  state$: Observable<{ isAuthenticated: boolean }> = this.authService.state$;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
     private authService: AuthService
-  ) {
-    this.state$ = authService.state$;
-  }
+  ) {}
 
   login() {
     this.authService.login();

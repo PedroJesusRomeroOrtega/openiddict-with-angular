@@ -15,11 +15,11 @@ export class AuthService {
   public state$ = this.stateSubject$.asObservable();
 
   constructor(private oauthService: OAuthService, private router: Router) {
-    // this.oauthService.events.subscribe((_) => {
-    //   this.stateSubject$.next({
-    //     isAuthenticated: this.oauthService.hasValidAccessToken(),
-    //   });
-    // });
+    this.oauthService.events.subscribe((_) => {
+      this.stateSubject$.next({
+        isAuthenticated: this.oauthService.hasValidAccessToken(),
+      });
+    });
     // this.oauthService.setupAutomaticSilentRefresh();
   }
 

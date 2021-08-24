@@ -8,5 +8,9 @@ export const authConfig: AuthConfig = {
   responseType: 'code',
   scope: 'openid profile email offline_access', // Ask offline_access to support refresh token refreshes
   showDebugInformation: true,
-  timeoutFactor: 0.01,
+  useSilentRefresh: true,
+  silentRefreshTimeout: 5000, // For faster testing
+  timeoutFactor: 0.25, // For faster testing
+  // sessionChecksEnabled: true,
+  silentRefreshRedirectUri: `${window.location.origin}/silent-refresh.html`,
 };

@@ -32,9 +32,9 @@ export class NavigationComponent {
     this.authService.logout();
   }
 
-  get email(): string {
+  get name(): string {
     return this.authService.identityClaims
-      ? (this.authService.identityClaims as any)['email']
+      ? (this.authService.identityClaims as any)['name']
       : '-';
   }
 }

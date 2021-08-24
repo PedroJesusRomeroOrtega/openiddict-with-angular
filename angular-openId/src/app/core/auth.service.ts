@@ -20,7 +20,7 @@ export class AuthService {
         isAuthenticated: this.oauthService.hasValidAccessToken(),
       });
     });
-    // this.oauthService.setupAutomaticSilentRefresh();
+    this.oauthService.setupAutomaticSilentRefresh();
   }
 
   public runInitialLoginSequence(): Promise<void> {

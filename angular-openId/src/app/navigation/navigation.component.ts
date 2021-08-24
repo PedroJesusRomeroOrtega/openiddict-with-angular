@@ -28,6 +28,10 @@ export class NavigationComponent {
     this.authService.login();
   }
 
+  logout() {
+    this.authService.logout();
+  }
+
   get email(): string {
     return this.authService.identityClaims
       ? (this.authService.identityClaims as any)['email']

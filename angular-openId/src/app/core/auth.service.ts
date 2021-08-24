@@ -44,6 +44,11 @@ export class AuthService {
     // this.oauthService.initLoginFlow(targetUrl || this.router.url);
   }
 
+  public logout() {
+    this.oauthService.logOut();
+    // this.oauthService.revokeTokenAndLogout();
+  }
+
   public get identityClaims() {
     return this.oauthService.getIdentityClaims();
   }

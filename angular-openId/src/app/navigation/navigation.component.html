@@ -29,6 +29,9 @@
       <ng-container *ngIf="state$ | async as state">
         <button (click)="login()" *ngIf="!state.isAuthenticated">Log in</button>
         <span *ngIf="state.isAuthenticated" id="email">{{ email }}</span>
+        <button (click)="logout()" *ngIf="state.isAuthenticated">
+          Log out
+        </button>
       </ng-container>
     </mat-toolbar>
     <!-- Add Content Here -->

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthWithForcedLoginGuard } from './core/auth-with-forced-login.guard';
 import { AuthGuard } from './core/auth.guard';
 import { HomeComponent } from './home/home.component';
 import { NoAuthComponent } from './shared/no-auth/no-auth.component';
@@ -20,6 +21,7 @@ const appRoutes: Routes = [
       import('./principal-feature/principal-feature.module').then(
         (m) => m.PrincipalFeatureModule
       ),
+    canActivate: [AuthWithForcedLoginGuard],
   },
   {
     path: 'optional',

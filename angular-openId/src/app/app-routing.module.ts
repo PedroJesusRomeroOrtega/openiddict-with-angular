@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './core/auth.guard';
 import { HomeComponent } from './home/home.component';
+import { NoAuthComponent } from './shared/no-auth/no-auth.component';
 
 const appRoutes: Routes = [
   {
@@ -25,7 +27,9 @@ const appRoutes: Routes = [
       import('./optional-feature/optional-feature.module').then(
         (m) => m.OptionalFeatureModule
       ),
+    canActivate: [AuthGuard],
   },
+  { path: 'notauth', component: NoAuthComponent },
 ];
 
 @NgModule({

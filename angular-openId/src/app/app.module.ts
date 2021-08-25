@@ -19,7 +19,7 @@ import { HomeComponent } from './home/home.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    CoreModule,
+    CoreModule.forRoot(),
     AppRoutingModule,
     LayoutModule,
     MatToolbarModule,

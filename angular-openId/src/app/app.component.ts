@@ -10,6 +10,6 @@ export class AppComponent {
   title = 'angular-openId';
 
   constructor(private authService: AuthService) {
-    // this.authService.runInitialLoginSequence();
+    this.authService.runInitialLoginSequence();
   }
 }

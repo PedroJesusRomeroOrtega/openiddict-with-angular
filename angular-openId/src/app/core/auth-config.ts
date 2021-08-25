@@ -12,5 +12,6 @@ export const authConfig: AuthConfig = {
   silentRefreshTimeout: 5000, // For faster testing
   timeoutFactor: 0.25, // For faster testing
   // sessionChecksEnabled: true,
+  clearHashAfterLogin: false,
   silentRefreshRedirectUri: `${window.location.origin}/silent-refresh.html`,
 };

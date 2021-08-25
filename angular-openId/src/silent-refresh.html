@@ -1,37 +1,39 @@
 <html>
   <body>
     <script>
-      var checks = [
+      // Based on: https://manfredsteyer.github.io/angular-oauth2-oidc/docs/additional-documentation/silent-refresh.html
+
+      const checks = [
         /[\?|&|#]code=/,
         /[\?|&|#]error=/,
         /[\?|&|#]token=/,
-        /[\?|&|#]id_token=/
+        /[\?|&|#]id_token=/,
       ];
 
       function isResponse(str) {
-        if (!str) return false;
-        for (var i = 0; i < checks.length; i++) {
+        let count = 0;
+
+        if (!str) {
+          return false;
+        }
+
+        for (let i = 0; i < checks.length; i++) {
           if (str.match(checks[i])) return true;
         }
+
         return false;
       }
 
-      var message = isResponse(location.hash)
+      let message = isResponse(location.hash)
         ? location.hash
-        : '#' + location.search;
+        : "#" + location.search;
 
-      if (window.parent && window.parent !== window) {
-          // if loaded as an iframe during silent refresh
-          window.parent.postMessage(message, location.origin);
-      } else if (window.opener && window.opener !== window) {
-          // if loaded as a popup during initial login
-          window.opener.postMessage(message, location.origin);
-      } else {
-          // last resort for a popup which has been through redirects and can't use window.opener
-          localStorage.setItem('auth_hash', message);
-          localStorage.removeItem('auth_hash');
-      }
+      console.log(
+        "Silent refresh iframe is posting to the parent application, message:",
+        message
+      );
 
+      (window.opener || window.parent).postMessage(message, location.origin);
     </script>
   </body>
 </html>

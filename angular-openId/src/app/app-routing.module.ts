@@ -37,7 +37,7 @@ const appRoutes: Routes = [
 @NgModule({
   imports: [
     RouterModule.forRoot(appRoutes, {
-      initialNavigation: 'enabled',
+      initialNavigation: 'enabledNonBlocking',
       enableTracing: false, // <-- debugging purposes only
       relativeLinkResolution: 'corrected',
     }),

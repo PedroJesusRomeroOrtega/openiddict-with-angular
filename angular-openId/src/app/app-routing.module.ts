@@ -19,6 +19,13 @@ const appRoutes: Routes = [
         (m) => m.PrincipalFeatureModule
       ),
   },
+  {
+    path: 'optional',
+    loadChildren: () =>
+      import('./optional-feature/optional-feature.module').then(
+        (m) => m.OptionalFeatureModule
+      ),
+  },
 ];
 
 @NgModule({

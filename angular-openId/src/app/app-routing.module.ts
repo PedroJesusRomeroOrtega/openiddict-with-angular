@@ -12,6 +12,13 @@ const appRoutes: Routes = [
     path: 'home',
     component: HomeComponent,
   },
+  {
+    path: 'principal',
+    loadChildren: () =>
+      import('./principal-feature/principal-feature.module').then(
+        (m) => m.PrincipalFeatureModule
+      ),
+  },
 ];
 
 @NgModule({

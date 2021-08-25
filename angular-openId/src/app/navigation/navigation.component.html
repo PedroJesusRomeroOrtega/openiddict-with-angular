@@ -1,11 +1,15 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
+      <a mat-list-item routerLink="/home">Home</a>
       <a mat-list-item href="#">Link 2</a>
       <a mat-list-item href="#">Link 3</a>
     </mat-nav-list>
@@ -17,11 +21,35 @@
         aria-label="Toggle sidenav"
         mat-icon-button
         (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
+        *ngIf="isHandset$ | async"
+      >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>angular-openId</span>
+      <span>Orchard Core OpenId with Angular-oauth2-oidc</span>
+      <span class="example-spacer"></span>
+      <ng-container *ngIf="state$ | async as state">
+        <button
+          mat-icon-button
+          aria-label="Login button"
+          matTooltip="Login"
+          (click)="login()"
+          *ngIf="!state.isAuthenticated"
+        >
+          <mat-icon aria-label="Login icon">login</mat-icon>
+        </button>
+
+        <button
+          mat-icon-button
+          aria-label="Logout button"
+          matTooltip="Logout"
+          (click)="logout()"
+          *ngIf="state.isAuthenticated"
+        >
+          <mat-icon aria-label="Logout icon">logout</mat-icon>
+        </button>
+        <span *ngIf="state.isAuthenticated" id="name">{{ name }}</span>
+      </ng-container>
     </mat-toolbar>
-    <!-- Add Content Here -->
+    <ng-content></ng-content>
   </mat-sidenav-content>
 </mat-sidenav-container>

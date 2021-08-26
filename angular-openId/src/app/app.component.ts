@@ -7,8 +7,6 @@ import { AuthService } from './core/auth.service';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'angular-openId';
-
   constructor(private authService: AuthService) {
     this.authService.runInitialLoginSequence();
   }

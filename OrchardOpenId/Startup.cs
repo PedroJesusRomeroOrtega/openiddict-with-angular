@@ -23,7 +23,7 @@ namespace OrchardOpenId
                 options.AddPolicy(name: CORS_POLICY,
                                   builder =>
                                   {
-                                      builder.WithOrigins("http://localhost:4200");
+                                      builder.WithOrigins("https://localhost:4200");
                                       builder.AllowAnyMethod();
                                       builder.AllowAnyHeader();
                                   });

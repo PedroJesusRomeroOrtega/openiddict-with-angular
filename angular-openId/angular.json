@@ -77,7 +77,10 @@
               "browserTarget": "angular-openId:build:production"
             },
             "development": {
-              "browserTarget": "angular-openId:build:development"
+              "browserTarget": "angular-openId:build:development",
+              "ssl": true,
+              "sslKey": "ssl/dev_localhost.key",
+              "sslCert": "ssl/dev_localhost.pem"
             }
           },
           "defaultConfiguration": "development"

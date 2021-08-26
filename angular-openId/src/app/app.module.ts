@@ -14,6 +14,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent, NavigationComponent, HomeComponent],
@@ -29,6 +30,7 @@ import { HomeComponent } from './home/home.component';
     MatIconModule,
     MatListModule,
     MatTooltipModule,
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

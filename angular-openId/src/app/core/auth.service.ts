@@ -1,8 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { BehaviorSubject, ReplaySubject } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import {
+  BehaviorSubject,
+  combineLatest,
+  Observable,
+  ReplaySubject,
+} from 'rxjs';
+import { filter, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +20,11 @@ export class AuthService {
 
   private isDoneLoadingSubject$ = new ReplaySubject<boolean>();
   public isDoneLoading$ = this.isDoneLoadingSubject$.asObservable();
+
+  public canActivateProtectedRoutes$: Observable<boolean> = combineLatest([
+    this.state$.pipe(map((s) => s.isAuthenticated)),
+    this.isDoneLoading$,
+  ]).pipe(map((values) => values.every((b) => b)));
 
   constructor(private oauthService: OAuthService, private router: Router) {
     // if (!environment.production) {
@@ -160,11 +170,6 @@ export class AuthService {
   }
 
   public login(targetUrl?: string) {
-    // this.oauthService.configure(authConfig);
-    // this.oauthService.loadDiscoveryDocumentAndLogin();
-    // this.oauthService.events
-    //   .pipe(filter((e) => e.type === 'token_received'))
-    //   .subscribe((_) => this.oauthService.loadUserProfile());
     this.oauthService.initLoginFlow(targetUrl || this.router.url);
   }
 

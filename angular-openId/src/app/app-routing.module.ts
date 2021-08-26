@@ -21,7 +21,7 @@ const appRoutes: Routes = [
       import('./principal-feature/principal-feature.module').then(
         (m) => m.PrincipalFeatureModule
       ),
-    canActivate: [AuthWithForcedLoginGuard],
+    canLoad: [AuthWithForcedLoginGuard],
   },
   {
     path: 'optional',
@@ -29,7 +29,7 @@ const appRoutes: Routes = [
       import('./optional-feature/optional-feature.module').then(
         (m) => m.OptionalFeatureModule
       ),
-    canActivate: [AuthGuard],
+    canLoad: [AuthGuard],
   },
   { path: 'notauth', component: NoAuthComponent },
 ];

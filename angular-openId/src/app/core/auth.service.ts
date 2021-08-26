@@ -170,11 +170,6 @@ export class AuthService {
   }
 
   public login(targetUrl?: string) {
-    // this.oauthService.configure(authConfig);
-    // this.oauthService.loadDiscoveryDocumentAndLogin();
-    // this.oauthService.events
-    //   .pipe(filter((e) => e.type === 'token_received'))
-    //   .subscribe((_) => this.oauthService.loadUserProfile());
     this.oauthService.initLoginFlow(targetUrl || this.router.url);
   }
 

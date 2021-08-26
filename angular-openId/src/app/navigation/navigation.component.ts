@@ -25,7 +25,7 @@ export class NavigationComponent {
   ) {}
 
   login() {
-    this.authService.login();
+    this.authService.login('/home');
   }
 
   logout() {

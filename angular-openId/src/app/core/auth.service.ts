@@ -183,6 +183,6 @@ export class AuthService {
   }
 
   private navigateToLoginPage() {
-    this.router.navigateByUrl('/should-login');
+    this.router.navigateByUrl('/notauth');
   }
 }

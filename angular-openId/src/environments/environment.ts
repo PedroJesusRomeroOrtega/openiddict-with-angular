@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   issuer: 'https://localhost:5001/',
+  cliendId: 'angularClient',
 };
 
 /*

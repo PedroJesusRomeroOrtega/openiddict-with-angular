@@ -1,0 +1,374 @@
+{
+  "name": "identity",
+  "displayName": "Identity",
+  "description": "Recipe to configure orchard as an identity server",
+  "author": "Pedro Jesús Romero Ortega",
+  "website": "",
+  "version": "1.0.0",
+  "issetuprecipe": false,
+  "categories": [],
+  "tags": [],
+  "steps": [
+    {
+      "name": "Settings",
+      "AdminSettings": {
+        "DisplayDarkMode": true,
+        "DisplayMenuFilter": false,
+        "DisplayNewMenu": false,
+        "DisplayTitlesInTopbar": false
+      },
+      "LocalizationSettings": {
+        "DefaultCulture": "en-GB",
+        "SupportedCultures": [
+          "en-GB",
+          "es-ES"
+        ]
+      },
+      "LoginSettings": {
+        "UseSiteTheme": true,
+        "UseExternalProviderIfOnlyOneDefined": false,
+        "DisableLocalLogin": false,
+        "UseScriptToSyncRoles": false,
+        "SyncRolesScript": "/* Uncomment to map AzureAD\r\nswitch (context.loginProvider) {\r\n    case \"AzureAD\":\r\n        context.externalClaims.forEach(claim => {\r\n            if (claim.Type === \"http://schemas.microsoft.com/ws/2008/06/identity/claims/role\") {\r\n                switch (claim.Value) {\r\n                    case \"Writer\":\r\n                        context.rolesToAdd.push(\"Author\");\r\n                        break;\r\n                    case \"Admin\":\r\n                        context.rolesToAdd.push(\"Administrator\");\r\n                        break;\r\n                    default:\r\n                        log(\"Warning\", \"Role \" + claim.Value + \" was not handled\");\r\n                        break;\r\n                }\r\n            }\r\n        });\r\n    default:\r\n        log(\"Warning\", \"Provider \" + loginProvider + \" was not handled\");\r\n        break;\r\n}\r\n*/\r\n"
+      },
+      "AuditTrailSettings": {
+        "Categories": [],
+        "ClientIpAddressAllowed": false
+      },
+      "HttpsSettings": {
+        "EnableStrictTransportSecurity": true,
+        "RequireHttps": true,
+        "RequireHttpsPermanent": false,
+        "SslPort": 5001
+      },
+      "AuditTrailTrimmingSettings": {
+        "RetentionDays": 10,
+        "LastRunUtc": null,
+        "Disabled": false
+      }
+    },
+    {
+      "name": "Feature",
+      "enable": [
+        "Application.Default",
+        "OrchardOpenId",
+        "OrchardCore.Settings",
+        "OrchardCore.Admin",
+        "OrchardCore.AuditTrail",
+        "OrchardCore.Resources",
+        "OrchardCore.Features",
+        "OrchardCore.Scripting",
+        "OrchardCore.Recipes",
+        "OrchardCore.Users",
+        "OrchardCore.Localization",
+        "OrchardCore.Deployment",
+        "OrchardCore.Diagnostics",
+        "OrchardCore.HomeRoute",
+        "OrchardCore.Https",
+        "OrchardCore.Navigation",
+        "OrchardCore.OpenId",
+        "OrchardCore.OpenId.Management",
+        "OrchardCore.OpenId.Server",
+        "OrchardCore.OpenId.Validation",
+        "OrchardCore.Roles",
+        "OrchardCore.Themes",
+        "OrchardCore.Users.AuditTrail",
+        "TheAdmin"
+      ],
+      "disable": [
+        "OrchardCore.Liquid",
+        "OrchardCore.Contents",
+        "OrchardCore.ContentTypes",
+        "OrchardCore.AdminDashboard",
+        "OrchardCore.AdminMenu",
+        "OrchardCore.Templates",
+        "OrchardCore.AdminTemplates",
+        "OrchardCore.Alias",
+        "OrchardCore.Apis.GraphQL",
+        "OrchardCore.Autoroute",
+        "OrchardCore.Setup",
+        "OrchardCore.AutoSetup",
+        "OrchardCore.BackgroundTasks",
+        "OrchardCore.Shortcodes",
+        "OrchardCore.ContentFields",
+        "OrchardCore.ContentFields.Indexing.SQL",
+        "OrchardCore.ContentFields.Indexing.SQL.UserPicker",
+        "OrchardCore.ContentLocalization",
+        "OrchardCore.ContentLocalization.ContentCulturePicker",
+        "OrchardCore.Sitemaps",
+        "OrchardCore.ContentLocalization.Sitemaps",
+        "OrchardCore.ContentPreview",
+        "OrchardCore.Contents.Deployment.AddToDeploymentPlan",
+        "OrchardCore.Contents.Deployment.Download",
+        "OrchardCore.Contents.Deployment.ExportContentToDeploymentTarget",
+        "OrchardCore.Contents.FileContentDefinition",
+        "OrchardCore.Cors",
+        "OrchardCore.CustomSettings",
+        "OrchardCore.DataProtection.Azure",
+        "OrchardCore.Deployment.Remote",
+        "OrchardCore.DynamicCache",
+        "OrchardCore.Email",
+        "OrchardCore.Facebook",
+        "OrchardCore.Facebook.Login",
+        "OrchardCore.Widgets",
+        "OrchardCore.Facebook.Widgets",
+        "OrchardCore.Feeds",
+        "OrchardCore.Flows",
+        "OrchardCore.Forms",
+        "OrchardCore.GitHub.Authentication",
+        "OrchardCore.Google.Analytics",
+        "OrchardCore.Google.GoogleAuthentication",
+        "OrchardCore.Google.TagManager",
+        "OrchardCore.HealthChecks",
+        "OrchardCore.Html",
+        "OrchardCore.Indexing",
+        "OrchardCore.Rules",
+        "OrchardCore.Layers",
+        "OrchardCore.Lists",
+        "OrchardCore.Lucene",
+        "OrchardCore.Lucene.ContentPicker",
+        "OrchardCore.Lucene.Worker",
+        "OrchardCore.Markdown",
+        "OrchardCore.Media",
+        "OrchardCore.Media.Cache",
+        "OrchardCore.Media.Azure.Storage",
+        "OrchardCore.Media.Slugify",
+        "OrchardCore.Title",
+        "OrchardCore.Menu",
+        "OrchardCore.Microsoft.Authentication.AzureAD",
+        "OrchardCore.Microsoft.Authentication.MicrosoftAccount",
+        "OrchardCore.MiniProfiler",
+        "OrchardCore.OpenId.Client",
+        "OrchardCore.Placements",
+        "OrchardCore.Placements.FileStorage",
+        "OrchardCore.PublishLater",
+        "OrchardCore.Queries",
+        "OrchardCore.Queries.Sql",
+        "OrchardCore.ReCaptcha",
+        "OrchardCore.ReCaptcha.Users",
+        "OrchardCore.Redis",
+        "OrchardCore.Redis.Bus",
+        "OrchardCore.Redis.Cache",
+        "OrchardCore.Redis.DataProtection",
+        "OrchardCore.Redis.Lock",
+        "OrchardCore.XmlRpc",
+        "OrchardCore.RemotePublishing",
+        "OrchardCore.ResponseCompression",
+        "OrchardCore.ReverseProxy",
+        "OrchardCore.Seo",
+        "OrchardCore.Shortcodes.Templates",
+        "OrchardCore.Sitemaps.Cleanup",
+        "OrchardCore.Sitemaps.RazorPages",
+        "OrchardCore.Spatial",
+        "OrchardCore.Taxonomies",
+        "OrchardCore.Taxonomies.ContentsAdminList",
+        "OrchardCore.Tenants",
+        "OrchardCore.Tenants.Distributed",
+        "OrchardCore.Tenants.FileProvider",
+        "OrchardCore.Twitter",
+        "OrchardCore.Twitter.Signin",
+        "OrchardCore.Users.ChangeEmail",
+        "OrchardCore.Users.CustomUserSettings",
+        "OrchardCore.Users.Registration",
+        "OrchardCore.Users.ResetPassword",
+        "OrchardCore.Users.TimeZone",
+        "OrchardCore.Workflows",
+        "OrchardCore.Workflows.Http",
+        "OrchardCore.Workflows.Session",
+        "OrchardCore.Workflows.Timers"
+      ]
+    },
+    {
+      "name": "Roles",
+      "Roles": [
+        {
+          "Name": "Moderator",
+          "Description": "Moderator role",
+          "Permissions": [
+            "AccessAdminPanel",
+            "ManageOwnUserInformation"
+          ]
+        },
+        {
+          "Name": "Author",
+          "Description": "Author role",
+          "Permissions": [
+            "AccessAdminPanel",
+            "PublishOwnContent",
+            "EditOwnContent",
+            "DeleteOwnContent",
+            "PreviewOwnContent",
+            "CloneOwnContent",
+            "ManageOwnUserInformation",
+            "ManageMediaContent"
+          ]
+        },
+        {
+          "Name": "Contributor",
+          "Description": "Contributor role",
+          "Permissions": [
+            "AccessAdminPanel",
+            "EditOwnContent",
+            "PreviewOwnContent",
+            "CloneOwnContent",
+            "ManageOwnUserInformation",
+            "ManageMediaContent"
+          ]
+        },
+        {
+          "Name": "Editor",
+          "Description": "Editor role",
+          "Permissions": [
+            "AccessAdminPanel",
+            "PublishContent",
+            "EditContent",
+            "DeleteContent",
+            "PreviewContent",
+            "CloneContent",
+            "ListContent",
+            "ManageOwnUserInformation",
+            "QueryLuceneApi",
+            "ManageMediaContent",
+            "ManageQueries"
+          ]
+        },
+        {
+          "Name": "Anonymous",
+          "Description": null,
+          "Permissions": []
+        },
+        {
+          "Name": "Authenticated",
+          "Description": null,
+          "Permissions": []
+        },
+        {
+          "Name": "Administrator",
+          "Description": "Administrator role",
+          "Permissions": [
+            "ManageSettings",
+            "AccessAdminPanel",
+            "ManageAdminSettings",
+            "PublishContent",
+            "EditContent",
+            "DeleteContent",
+            "PreviewContent",
+            "CloneContent",
+            "AccessContentApi",
+            "ListContent",
+            "ApiViewContent",
+            "ViewContentTypes",
+            "EditContentTypes",
+            "ExecuteGraphQLMutations",
+            "ManageUsers",
+            "Import",
+            "Export",
+            "ManageRemoteInstances",
+            "ManageRemoteClients",
+            "ExportRemoteInstances",
+            "ManageLayers",
+            "ManageIndexes",
+            "ManageMediaContent",
+            "ManageAttachedMediaFieldsFolder",
+            "ManageMediaProfiles",
+            "ViewMediaOptions",
+            "ManageMenu",
+            "ManageApplications",
+            "ManageScopes",
+            "ManageClientSettings",
+            "ManageServerSettings",
+            "ManageValidationSettings",
+            "ManageQueries",
+            "ManageRoles",
+            "SiteOwner",
+            "ApplyTheme",
+            "ManageCultures",
+            "ManageCorsSettings",
+            "ManageHttps",
+            "ViewAuditTrail",
+            "ManageAuditTrailSettings",
+            "ManageEmailSettings"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "OpenIdServer",
+      "OpenIdServer": {
+        "AccessTokenFormat": 0,
+        "Authority": "https://localhost:5001/",
+        "DisableAccessTokenEncryption": false,
+        "EncryptionCertificateStoreLocation": null,
+        "EncryptionCertificateStoreName": null,
+        "EncryptionCertificateThumbprint": null,
+        "SigningCertificateStoreLocation": null,
+        "SigningCertificateStoreName": null,
+        "SigningCertificateThumbprint": null,
+        "AuthorizationEndpointPath": "/connect/authorize",
+        "LogoutEndpointPath": "/connect/logout",
+        "TokenEndpointPath": "/connect/token",
+        "UserinfoEndpointPath": "/connect/userinfo",
+        "AllowPasswordFlow": false,
+        "AllowClientCredentialsFlow": false,
+        "AllowAuthorizationCodeFlow": true,
+        "AllowRefreshTokenFlow": true,
+        "AllowHybridFlow": false,
+        "AllowImplicitFlow": false,
+        "DisableRollingRefreshTokens": false,
+        "UseReferenceAccessTokens": false
+      }
+    },
+    //{
+    //  "name": "OpenIdScope",
+    //  "DisplayName": "openid",
+    //  "ScopeName": "openid"
+    //},
+    //{
+    //  "name": "OpenIdScope",
+    //  "DisplayName": "profile",
+    //  "ScopeName": "profile"
+    //},
+    //{
+    //  "name": "OpenIdScope",
+    //  "DisplayName": "email",
+    //  "ScopeName": "email"
+    //},
+    //{
+    //  "name": "OpenIdScope",
+    //  "DisplayName": "offline_access",
+    //  "ScopeName": "offline_access"
+    //},
+    {
+      "name": "openidapplication",
+      "ClientId": "angularClient",
+      "DisplayName": "AngularClient",
+      "Type": "Public",
+      "EnableTokenEndpoint": true,
+      "EnableAuthorizationEndpoint": true,
+      "EnableLogoutEndpoint": true,
+      "EnableUserInfoEndpoint": true,
+      "AllowPasswordFlow": false,
+      "AllowClientCredentialsFlow": false,
+      "AllowAuthorizationCodeFlow": true,
+      "AllowRefreshTokenFlow": true,
+      "AllowImplicitFlow": false,
+      "RedirectUris": "https://localhost:4200 https://localhost:4200/index.html https://localhost:4200/silent-refresh.html",
+      "AllowLogoutEndpoint": true,
+      "PostLogoutRedirectUris": "https://localhost:4200 https://localhost:4200/index.html https://localhost:4200/silent-refresh.html",
+      "Scopes": "openid profile email offline_access"
+    },
+    {
+      "name": "OpenIdValidation",
+      "OpenIdValidation": {
+        "Audience": null,
+        "Authority": null,
+        "DisableTokenTypeValidation": false,
+        "Tenant": "Default"
+      }
+    },
+    {
+      "name": "Settings",
+      "SiteName": "AuthenticationServer"
+    }
+  ]
+}

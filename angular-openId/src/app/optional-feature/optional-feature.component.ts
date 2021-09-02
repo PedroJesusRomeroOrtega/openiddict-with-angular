@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
+import { ForecastService } from './forecast.service';
 
 @Component({
   selector: 'app-optional-feature',
   templateUrl: './optional-feature.component.html',
-  styleUrls: ['./optional-feature.component.scss']
+  styleUrls: ['./optional-feature.component.scss'],
 })
-export class OptionalFeatureComponent implements OnInit {
+export class OptionalFeatureComponent {
+  weatherForecast$ = this.forecastService.weatherForecast$;
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  constructor(private forecastService: ForecastService) {}
 }

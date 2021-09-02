@@ -343,6 +343,12 @@
     //  "DisplayName": "roles",
     //  "ScopeName": "roles"
     //},
+    //{
+    //  "name": "OpenIdScope",
+    //  "DisplayName": "forecast",
+    //  "ScopeName": "forecast",
+    //  "Resources": "forecastApi"
+    //},
     {
       "name": "openidapplication",
       "ClientId": "angularClient",
@@ -361,6 +367,23 @@
       "AllowLogoutEndpoint": true,
       "PostLogoutRedirectUris": "https://localhost:4200 https://localhost:4200/index.html https://localhost:4200/silent-refresh.html",
       "Scopes": "openid profile email offline_access roles"
+    },
+    {
+      "name": "openidapplication",
+      "ClientId": "forecastApi",
+      "DisplayName": "ForecastApi",
+      "Type": "Confidential",
+      "ClientSecret": "forecastApiSecret",
+      "EnableTokenEndpoint": true,
+      "EnableAuthorizationEndpoint": true,
+      "EnableLogoutEndpoint": true,
+      "EnableUserInfoEndpoint": true,
+      "AllowPasswordFlow": false,
+      "AllowClientCredentialsFlow": false,
+      "AllowAuthorizationCodeFlow": false,
+      "AllowRefreshTokenFlow": false,
+      "AllowImplicitFlow": false,
+      "Scopes": "openid profile email offline_access roles forecast"
     },
     {
       "name": "OpenIdValidation",

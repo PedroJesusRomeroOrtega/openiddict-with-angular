@@ -7,22 +7,25 @@ import {
   Observable,
   ReplaySubject,
 } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { distinctUntilChanged, filter, map, tap } from 'rxjs/operators';
+import { IdentityClaims } from './identity-claims';
+import { Role } from './role';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private stateSubject$ = new BehaviorSubject<{ isAuthenticated: boolean }>({
-    isAuthenticated: false,
-  });
-  public state$ = this.stateSubject$.asObservable();
+  private isAuthenticatedSubject$ = new BehaviorSubject<boolean>(false);
+  public isAuthenticated$ = this.isAuthenticatedSubject$.asObservable();
 
   private isDoneLoadingSubject$ = new ReplaySubject<boolean>();
   public isDoneLoading$ = this.isDoneLoadingSubject$.asObservable();
 
+  private isUserProfileLoadedSubject$ = new BehaviorSubject<boolean>(false);
+  public isUserProfileLoaded$ = this.isUserProfileLoadedSubject$.asObservable();
+
   public canActivateProtectedRoutes$: Observable<boolean> = combineLatest([
-    this.state$.pipe(map((s) => s.isAuthenticated)),
+    this.isAuthenticated$,
     this.isDoneLoading$,
   ]).pipe(map((values) => values.every((b) => b)));
 
@@ -49,24 +52,28 @@ export class AuthService {
       console.warn(
         'Noticed changes to access_token (most likely from another tab), updating isAuthenticated'
       );
-      this.stateSubject$.next({
-        isAuthenticated: this.oauthService.hasValidAccessToken(),
-      });
+      this.isAuthenticatedSubject$.next(
+        this.oauthService.hasValidAccessToken()
+      );
 
       if (!this.oauthService.hasValidAccessToken()) {
         this.navigateToLoginPage();
       }
     });
 
-    this.oauthService.events.subscribe((_) => {
-      this.stateSubject$.next({
-        isAuthenticated: this.oauthService.hasValidAccessToken(),
-      });
+    this.oauthService.events.subscribe((e) => {
+      this.isAuthenticatedSubject$.next(
+        this.oauthService.hasValidAccessToken()
+      );
     });
 
     this.oauthService.events
       .pipe(filter((e) => ['token_received'].includes(e.type)))
       .subscribe((e) => this.oauthService.loadUserProfile());
+
+    this.oauthService.events
+      .pipe(filter((e) => ['user_profile_loaded'].includes(e.type)))
+      .subscribe((e) => this.isUserProfileLoadedSubject$.next(true));
 
     this.oauthService.events
       .pipe(
@@ -178,8 +185,18 @@ export class AuthService {
     // this.oauthService.revokeTokenAndLogout();
   }
 
-  public get identityClaims() {
-    return this.oauthService.getIdentityClaims();
+  public get identityClaims(): IdentityClaims {
+    return this.oauthService.getIdentityClaims() as IdentityClaims;
+  }
+
+  public hasRole(role: Role): boolean {
+    const userRoles = this.identityClaims.roles;
+    const userRoleFinded = userRoles
+      ? userRoles.find(
+          (ur) => ur.toUpperCase() === Role[role].toString().toUpperCase()
+        )
+      : undefined;
+    return !!userRoleFinded;
   }
 
   private navigateToLoginPage() {

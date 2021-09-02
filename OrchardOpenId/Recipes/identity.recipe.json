@@ -338,6 +338,11 @@
     //  "DisplayName": "offline_access",
     //  "ScopeName": "offline_access"
     //},
+    //{
+    //  "name": "OpenIdScope",
+    //  "DisplayName": "roles",
+    //  "ScopeName": "roles"
+    //},
     {
       "name": "openidapplication",
       "ClientId": "angularClient",
@@ -355,7 +360,7 @@
       "RedirectUris": "https://localhost:4200 https://localhost:4200/index.html https://localhost:4200/silent-refresh.html",
       "AllowLogoutEndpoint": true,
       "PostLogoutRedirectUris": "https://localhost:4200 https://localhost:4200/index.html https://localhost:4200/silent-refresh.html",
-      "Scopes": "openid profile email offline_access"
+      "Scopes": "openid profile email offline_access roles"
     },
     {
       "name": "OpenIdValidation",

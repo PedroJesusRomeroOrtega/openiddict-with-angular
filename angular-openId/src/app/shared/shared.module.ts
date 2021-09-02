@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
+import { HasRoleDirective } from './has-role.directive';
 
 const materialModules = [
   MatToolbarModule,
@@ -20,8 +21,8 @@ const materialModules = [
 ];
 
 @NgModule({
-  declarations: [NoAuthComponent, NavigationComponent],
+  declarations: [NoAuthComponent, NavigationComponent, HasRoleDirective],
   imports: [RouterModule, CommonModule, ...materialModules],
-  exports: [NavigationComponent],
+  exports: [NavigationComponent, HasRoleDirective, ...materialModules],
 })
 export class SharedModule {}

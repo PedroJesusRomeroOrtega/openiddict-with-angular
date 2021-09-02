@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Role } from '../core/role';
 
 @Component({
@@ -6,12 +6,8 @@ import { Role } from '../core/role';
   templateUrl: './principal-feature.component.html',
   styleUrls: ['./principal-feature.component.scss'],
 })
-export class PrincipalFeatureComponent implements OnInit {
+export class PrincipalFeatureComponent {
   public get Role() {
     return Role;
   }
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }

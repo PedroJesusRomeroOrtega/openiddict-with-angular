@@ -27,13 +27,15 @@
       </button>
       <span>Orchard Core OpenId with Angular-oauth2-oidc</span>
       <span class="example-spacer"></span>
-      <ng-container *ngIf="state$ | async as state">
+      <ng-container
+        *ngIf="{ value: isAuthenticated$ | async } as isAuthenticated"
+      >
         <button
           mat-icon-button
           aria-label="Login button"
           matTooltip="Login"
           (click)="login()"
-          *ngIf="!state.isAuthenticated"
+          *ngIf="!isAuthenticated.value"
         >
           <mat-icon aria-label="Login icon">login</mat-icon>
         </button>
@@ -43,11 +45,11 @@
           aria-label="Logout button"
           matTooltip="Logout"
           (click)="logout()"
-          *ngIf="state.isAuthenticated"
+          *ngIf="isAuthenticated.value"
         >
           <mat-icon aria-label="Logout icon">logout</mat-icon>
         </button>
-        <span *ngIf="state.isAuthenticated" id="name">{{ name }}</span>
+        <span *ngIf="isAuthenticated.value" id="name">{{ name }}</span>
       </ng-container>
     </mat-toolbar>
     <ng-content></ng-content>

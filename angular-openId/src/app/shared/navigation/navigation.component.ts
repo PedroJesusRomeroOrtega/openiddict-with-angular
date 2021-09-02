@@ -17,7 +17,7 @@ export class NavigationComponent {
       shareReplay()
     );
 
-  state$: Observable<{ isAuthenticated: boolean }> = this.authService.state$;
+  isAuthenticated$ = this.authService.isAuthenticated$;
 
   constructor(
     private breakpointObserver: BreakpointObserver,

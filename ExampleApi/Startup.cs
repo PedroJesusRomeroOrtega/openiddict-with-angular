@@ -1,4 +1,6 @@
 using ExampleApi.Authorization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+//using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -36,17 +38,31 @@ namespace ExampleApi
                 options.AddPolicy(name: CORS_POLICY,
                                   builder =>
                                   {
+                                      builder.AllowCredentials();
                                       builder.WithOrigins("https://localhost:4200");
-                                      builder.AllowAnyMethod();
+                                      builder.SetIsOriginAllowedToAllowWildcardSubdomains();
                                       builder.AllowAnyHeader();
+                                      builder.AllowAnyMethod();
                                   });
             });
 
-            services.AddAuthentication(options => {
-                options.DefaultScheme = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme;
-                options.DefaultAuthenticateScheme = "Bearer";
-                options.DefaultChallengeScheme = "Bearer";
-            });
+            services.AddAuthentication(options =>
+            {
+                //options.DefaultScheme = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme;
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                //options.DefaultAuthenticateScheme = "bearer";
+                //options.DefaultChallengeScheme = "bearer";
+                //options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                //options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+                {
+                options.Authority = "https://localhost:5001";
+                options.Audience = "forecastApi";
+                options.RequireHttpsMetadata = true;
+                options.SaveToken = true;
+                options.IncludeErrorDetails = true;
+                });
+
             services.AddOpenIddict()
                 .AddValidation(options =>
                 {
@@ -61,19 +77,39 @@ namespace ExampleApi
                     options.UseAspNetCore();
                 });
 
-            //services.AddSingleton<IAuthorizationHandler, RequireScopeHandler>();
+            services.AddSingleton<IAuthorizationHandler, RequireScopeHandler>();
 
-            //services.AddAuthorization(options =>
-            //{
-            //    //options.AddPolicy("forecastPolicy", policy =>
-            //    // {
-            //    //     policy.Requirements.Add(new RequireScope());
-            //    // });
-            //});
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("forecastPolicy", policy =>
+                 {
+                     policy.Requirements.Add(new RequireScope());
+                 });
+            });
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
+                // add JWT Authentication
+                var securityScheme = new OpenApiSecurityScheme
+                {
+                    Name = "JWT Authentication",
+                    Description = "Enter JWT Bearer token **_only_**",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer", // must be lower case
+                    BearerFormat = "JWT",
+                    Reference = new OpenApiReference
+                    {
+                        Id = JwtBearerDefaults.AuthenticationScheme,
+                        Type = ReferenceType.SecurityScheme
+                    }
+                };
+                c.AddSecurityDefinition(securityScheme.Reference.Id, securityScheme);
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {securityScheme, new string[] { }}
+                });
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ForecastApi", Version = "v1" });
             });
         }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ExampleApi.Controllers
 {
-    //[Authorize("forecastPolicy")]
+    [Authorize("forecastPolicy")]
     //[Authorize]
     [ApiController]
     [Route("[controller]")]

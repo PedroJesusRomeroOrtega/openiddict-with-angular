@@ -6,7 +6,7 @@ export const authConfig: AuthConfig = {
   redirectUri: window.location.origin,
   clientId: environment.cliendId,
   responseType: 'code',
-  scope: 'openid profile email offline_access roles phone', // Ask offline_access to support refresh token refreshes
+  scope: 'openid profile email offline_access roles forecast', // Ask offline_access to support refresh token refreshes
   showDebugInformation: !environment.production,
   useSilentRefresh: true,
   silentRefreshTimeout: environment.production ? 20000 : 5000,

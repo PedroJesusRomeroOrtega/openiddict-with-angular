@@ -1,3 +1,5 @@
+using ExampleApi.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -40,7 +42,11 @@ namespace ExampleApi
                                   });
             });
 
-            services.AddAuthentication(options => options.DefaultScheme = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme);
+            services.AddAuthentication(options => {
+                options.DefaultScheme = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme;
+                options.DefaultAuthenticateScheme = "Bearer";
+                options.DefaultChallengeScheme = "Bearer";
+            });
             services.AddOpenIddict()
                 .AddValidation(options =>
                 {
@@ -55,7 +61,15 @@ namespace ExampleApi
                     options.UseAspNetCore();
                 });
 
-            services.AddAuthorization();
+            //services.AddSingleton<IAuthorizationHandler, RequireScopeHandler>();
+
+            //services.AddAuthorization(options =>
+            //{
+            //    //options.AddPolicy("forecastPolicy", policy =>
+            //    // {
+            //    //     policy.Requirements.Add(new RequireScope());
+            //    // });
+            //});
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

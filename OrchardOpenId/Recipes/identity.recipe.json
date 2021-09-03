@@ -383,13 +383,13 @@
       "AllowAuthorizationCodeFlow": false,
       "AllowRefreshTokenFlow": false,
       "AllowImplicitFlow": false,
-      "Scopes": "openid profile email offline_access roles forecast"
+      "Scopes": "openid profile email offline_access roles"
     },
     {
       "name": "OpenIdValidation",
       "OpenIdValidation": {
-        "Audience": null,
-        "Authority": null,
+        "Audience": "forecastApi",
+        "Authority": "https://localhost:5001",
         "DisableTokenTypeValidation": false,
         "Tenant": "Default"
       }

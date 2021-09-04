@@ -48,34 +48,33 @@ namespace ExampleApi
 
             services.AddAuthentication(options =>
             {
-                //options.DefaultScheme = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme;
-                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-                //options.DefaultAuthenticateScheme = "bearer";
-                //options.DefaultChallengeScheme = "bearer";
-                //options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                //options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
-                {
-                options.Authority = "https://localhost:5001";
-                options.Audience = "forecastApi";
-                options.RequireHttpsMetadata = true;
-                options.SaveToken = true;
-                options.IncludeErrorDetails = true;
-                });
+                //options.DefaultScheme = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme; //for belusia server
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme; // for orchard core openid
+            })
+                //for orchard core openid
+                .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+              {
+                  options.Authority = "https://localhost:5001";
+                  options.Audience = "forecastApi";
+                  options.RequireHttpsMetadata = true;
+                  options.SaveToken = true;
+                  options.IncludeErrorDetails = true;
+              });
 
-            services.AddOpenIddict()
-                .AddValidation(options =>
-                {
-                    options.SetIssuer("https://localhost:5001");
-                    options.AddAudiences("forecastApi");
+            // for belusia server
+            //services.AddOpenIddict()
+            //    .AddValidation(options =>
+            //    {
+            //        options.SetIssuer("https://localhost:5001");
+            //        options.AddAudiences("forecastApi");
 
-                    options.UseIntrospection()
-                           .SetClientId("forecastApi")
-                           .SetClientSecret("forecastApiSecret");
+            //        options.UseIntrospection()
+            //               .SetClientId("forecastApi")
+            //               .SetClientSecret("forecastApiSecret");
 
-                    options.UseSystemNetHttp();
-                    options.UseAspNetCore();
-                });
+            //        options.UseSystemNetHttp();
+            //        options.UseAspNetCore();
+            //    });
 
             services.AddSingleton<IAuthorizationHandler, RequireScopeHandler>();
 

@@ -396,7 +396,9 @@
     },
     {
       "name": "Settings",
-      "SiteName": "AuthenticationServer"
+      "SiteName": "AuthenticationServer",
+      "Audience": "forecastApi",
+      "Authority": "https://localhost:5001"
     }
   ]
 }

@@ -1,0 +1,22 @@
+2021-09-06 13:26:16.906 +02:00 [INF] Now listening on: https://localhost:5001
+2021-09-06 13:26:16.912 +02:00 [INF] Now listening on: http://localhost:5000
+2021-09-06 13:26:16.913 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-09-06 13:26:16.913 +02:00 [INF] Hosting environment: Development
+2021-09-06 13:26:16.913 +02:00 [INF] Content root path: C:\Users\Pedro\source\repos\openiddict-with-angular\OpenIdServer
+2021-09-06 13:26:17.999 +02:00 [INF] Request starting HTTP/2 GET https://localhost:5001/ - -
+2021-09-06 13:26:18.022 +02:00 [INF] Executing endpoint '/ HTTP: GET'
+2021-09-06 13:26:18.031 +02:00 [INF] Executed endpoint '/ HTTP: GET'
+2021-09-06 13:26:18.033 +02:00 [INF] Request finished HTTP/2 GET https://localhost:5001/ - - - 200 - - 35.7831ms
+2021-09-06 13:26:18.055 +02:00 [INF] Request starting HTTP/2 GET https://localhost:5001/favicon.ico - -
+2021-09-06 13:26:18.056 +02:00 [INF] Request finished HTTP/2 GET https://localhost:5001/favicon.ico - - - 404 0 - 0.6308ms
+2021-09-06 13:27:19.055 +02:00 [INF] Now listening on: https://localhost:5001
+2021-09-06 13:27:19.059 +02:00 [INF] Now listening on: http://localhost:5000
+2021-09-06 13:27:19.059 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2021-09-06 13:27:19.059 +02:00 [INF] Hosting environment: Development
+2021-09-06 13:27:19.059 +02:00 [INF] Content root path: C:\Users\Pedro\source\repos\openiddict-with-angular\OpenIdServer
+2021-09-06 13:27:25.554 +02:00 [INF] Request starting HTTP/2 GET https://localhost:5001/ - -
+2021-09-06 13:27:25.575 +02:00 [INF] Executing endpoint '/ HTTP: GET'
+2021-09-06 13:27:25.579 +02:00 [INF] Executed endpoint '/ HTTP: GET'
+2021-09-06 13:27:25.580 +02:00 [INF] Request finished HTTP/2 GET https://localhost:5001/ - - - 200 - - 27.9909ms
+2021-09-06 13:27:25.666 +02:00 [INF] Request starting HTTP/2 GET https://localhost:5001/favicon.ico - -
+2021-09-06 13:27:25.666 +02:00 [INF] Request finished HTTP/2 GET https://localhost:5001/favicon.ico - - - 404 0 - 0.5544ms

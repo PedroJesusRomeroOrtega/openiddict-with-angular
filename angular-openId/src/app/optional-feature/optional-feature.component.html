@@ -3,3 +3,9 @@
   If not authenticated it will be redirected to
   <code>no authenticated page</code>
 </p>
+<p>If authenticated will retrieve the weather forecast from the api</p>
+
+<ng-container *ngIf="weatherForecast$ | async as weatherForecast">
+  <h3>Forecast:</h3>
+  {{ weatherForecast[0].summary }} - {{ weatherForecast[0].temperatureC }}º
+</ng-container>

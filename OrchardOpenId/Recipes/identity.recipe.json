@@ -343,6 +343,12 @@
     //  "DisplayName": "roles",
     //  "ScopeName": "roles"
     //},
+    //{
+    //  "name": "OpenIdScope",
+    //  "DisplayName": "forecast",
+    //  "ScopeName": "forecast",
+    //  "Resources": "forecastApi"
+    //},
     {
       "name": "openidapplication",
       "ClientId": "angularClient",
@@ -363,17 +369,36 @@
       "Scopes": "openid profile email offline_access roles"
     },
     {
+      "name": "openidapplication",
+      "ClientId": "forecastApi",
+      "DisplayName": "ForecastApi",
+      "Type": "Confidential",
+      "ClientSecret": "forecastApiSecret",
+      "EnableTokenEndpoint": true,
+      "EnableAuthorizationEndpoint": true,
+      "EnableLogoutEndpoint": true,
+      "EnableUserInfoEndpoint": true,
+      "AllowPasswordFlow": false,
+      "AllowClientCredentialsFlow": false,
+      "AllowAuthorizationCodeFlow": false,
+      "AllowRefreshTokenFlow": false,
+      "AllowImplicitFlow": false,
+      "Scopes": "openid profile email offline_access roles"
+    },
+    {
       "name": "OpenIdValidation",
       "OpenIdValidation": {
-        "Audience": null,
-        "Authority": null,
+        "Audience": "forecastApi",
+        "Authority": "https://localhost:5001",
         "DisableTokenTypeValidation": false,
         "Tenant": "Default"
       }
     },
     {
       "name": "Settings",
-      "SiteName": "AuthenticationServer"
+      "SiteName": "AuthenticationServer",
+      "Audience": "forecastApi",
+      "Authority": "https://localhost:5001"
     }
   ]
 }

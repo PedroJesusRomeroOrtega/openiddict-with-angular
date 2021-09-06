@@ -19,8 +19,7 @@ namespace ExampleApi.Authorization
             var scopeClaim = context.User.Claims.FirstOrDefault(t => t.Type == "scope");
 
 
-            //if (scopeClaim != null && (context.User.HasScope("openid profile email offline_access roles forecast")))
-            if (scopeClaim !=null && scopeClaim.Value.Contains("forecast"))
+            if (scopeClaim != null && (context.User.HasScope("forecast")))
             {
                 context.Succeed(requirement);
             }

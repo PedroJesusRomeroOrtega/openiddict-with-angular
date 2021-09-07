@@ -4,18 +4,11 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using OpenIddict.Validation.AspNetCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace ExampleApi
 {
@@ -48,33 +41,33 @@ namespace ExampleApi
 
             services.AddAuthentication(options =>
             {
-                //options.DefaultScheme = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme; //for belusia server
-                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme; // for orchard core openid
-            })
-                //for orchard core openid
-                .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
-              {
-                  options.Authority = "https://localhost:5001";
-                  options.Audience = "forecastApi";
-                  options.RequireHttpsMetadata = true;
-                  options.SaveToken = true;
-                  options.IncludeErrorDetails = true;
-              });
+                options.DefaultScheme = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme; //for belusia server
+                //options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme; // for orchard core openid
+            });
+            //for orchard core openid
+            //  .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
+            //{
+            //    options.Authority = "https://localhost:5001";
+            //    options.Audience = "forecastApi";
+            //    options.RequireHttpsMetadata = true;
+            //    options.SaveToken = true;
+            //    options.IncludeErrorDetails = true;
+            //});
 
-            // for belusia server
-            //services.AddOpenIddict()
-            //    .AddValidation(options =>
-            //    {
-            //        options.SetIssuer("https://localhost:5001");
-            //        options.AddAudiences("forecastApi");
+            // for OpenIdServer
+            services.AddOpenIddict()
+                .AddValidation(options =>
+                {
+                    options.SetIssuer("https://localhost:5001");
+                    options.AddAudiences("forecastApi");
 
-            //        options.UseIntrospection()
-            //               .SetClientId("forecastApi")
-            //               .SetClientSecret("forecastApiSecret");
+                    options.UseIntrospection()
+                           .SetClientId("forecastApi")
+                           .SetClientSecret("forecastApiSecret");
 
-            //        options.UseSystemNetHttp();
-            //        options.UseAspNetCore();
-            //    });
+                    options.UseSystemNetHttp();
+                    options.UseAspNetCore();
+                });
 
             services.AddSingleton<IAuthorizationHandler, RequireScopeHandler>();
 
@@ -100,7 +93,7 @@ namespace ExampleApi
                     BearerFormat = "JWT",
                     Reference = new OpenApiReference
                     {
-                        Id = JwtBearerDefaults.AuthenticationScheme,
+                        Id = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme,
                         Type = ReferenceType.SecurityScheme
                     }
                 };

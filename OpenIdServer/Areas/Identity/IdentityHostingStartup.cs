@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using OpenIdServer.Models;
+using OpenIdServer.Data;
 
 [assembly: HostingStartup(typeof(OpenIdServer.Areas.Identity.IdentityHostingStartup))]
 namespace OpenIdServer.Areas.Identity

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using OpenIdServer.Models;
+using OpenIdServer.Data;
 
 namespace OpenIdServer.Areas.Identity.Pages.Account.Manage
 {

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace OpenIdServer.Models
+namespace OpenIdServer.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

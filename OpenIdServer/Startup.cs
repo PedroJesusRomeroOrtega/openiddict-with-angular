@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using OpenIdServer.Models;
+using OpenIdServer.Data;
 using Quartz;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
@@ -51,6 +51,7 @@ namespace OpenIdServer
             // which saves you from doing the mapping in your authorization controller.
             services.Configure<IdentityOptions>(options =>
             {
+                options.User.RequireUniqueEmail = true;
                 options.ClaimsIdentity.UserNameClaimType = Claims.Name;
                 options.ClaimsIdentity.UserIdClaimType = Claims.Subject;
                 options.ClaimsIdentity.RoleClaimType = Claims.Role;

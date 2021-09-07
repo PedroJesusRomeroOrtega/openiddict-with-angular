@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OpenIddict.Abstractions;
-using OpenIdServer.Models;
+using OpenIdServer.Data;
 using System;
 using System.Threading;
 using System.Threading.Tasks;

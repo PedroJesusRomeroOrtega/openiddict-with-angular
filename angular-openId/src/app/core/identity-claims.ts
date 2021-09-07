@@ -10,6 +10,6 @@ export interface IdentityClaims {
   nonce: string;
   oi_au_id: string;
   oi_tkn_id: string;
-  roles: string[];
+  role: string[];
   sub: string;
 }

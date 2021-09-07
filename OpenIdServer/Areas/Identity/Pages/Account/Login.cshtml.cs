@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using OpenIdServer.Models;
+using OpenIdServer.Data;
 
 namespace OpenIdServer.Areas.Identity.Pages.Account
 {

@@ -9,12 +9,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Serilog.Sinks.SystemConsole.Themes;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Identity;
+using OpenIdServer.Data;
 
 namespace OpenIdServer
 {
     public class Program
     {
-        public static int Main(string[] args)
+        public async static Task<int> Main(string[] args)
         {
             Log.Logger = new LoggerConfiguration()
                .MinimumLevel.Debug()
@@ -26,7 +29,25 @@ namespace OpenIdServer
             try
             {
                 Log.Information("Starting web host");
-                CreateHostBuilder(args).Build().Run();
+                var host = CreateHostBuilder(args).Build();
+
+                using (var scope = host.Services.CreateScope())
+                {
+                    var services = scope.ServiceProvider;
+                    try
+                    {
+                        var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+                        var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+                        await ContextSeed.SeedRolesAsync(roleManager);
+                        await ContextSeed.SeedUsersAsync(userManager);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Error(ex, "An error occurred while seeding the database.");
+                    }
+                }
+
+                host.Run();
                 return 0;
             }
             catch (Exception ex)

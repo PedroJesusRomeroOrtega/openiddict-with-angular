@@ -8,7 +8,7 @@ using Microsoft.Extensions.Primitives;
 using OpenIddict.Abstractions;
 using OpenIddict.Server.AspNetCore;
 using OpenIdServer.Helpers;
-using OpenIdServer.Models;
+using OpenIdServer.Data;
 using OpenIdServer.ViewModels.Authorization;
 using System;
 using System.Collections.Generic;

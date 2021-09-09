@@ -9,7 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CreateAngularDevelopmentCer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleApi", "ExampleApi\ExampleApi.csproj", "{59C5D027-F9F3-43DD-9A1B-A4CCD93BDA6A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenIdServer", "OpenIdServer\OpenIdServer.csproj", "{C2BF7B4F-6D22-444B-ADE0-836717605079}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenIdServer", "OpenIdServer\OpenIdServer.csproj", "{C2BF7B4F-6D22-444B-ADE0-836717605079}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D84BF715-0241-4F62-9F97-E55B9CA8ACC1}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

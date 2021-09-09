@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using OpenIddict.Abstractions;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -19,7 +18,8 @@ namespace ExampleApi.Authorization
             var scopeClaim = context.User.Claims.FirstOrDefault(t => t.Type == "scope");
 
 
-            if (scopeClaim != null && (context.User.HasScope("forecast")))
+            if (scopeClaim != null
+                && (context.User.HasScope("forecast") || scopeClaim.Value.Contains("forecast")))
             {
                 context.Succeed(requirement);
             }

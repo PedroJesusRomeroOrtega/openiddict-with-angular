@@ -1,17 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using OpenIddict.Validation.AspNetCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace ExampleApi.Controllers
 {
-    //[Authorize("forecastPolicy",AuthenticationSchemes = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme)] // for belusia server
     [Authorize("forecastPolicy")]
-    //[Authorize]
     [ApiController]
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase

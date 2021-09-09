@@ -190,7 +190,7 @@ export class AuthService {
   }
 
   public hasRole(role: Role): boolean {
-    const userRoles = this.identityClaims.role;
+    const userRoles = this.identityClaims.role ?? this.identityClaims.roles;
     const userRoleFinded = userRoles
       ? userRoles.find(
           (ur) => ur.toUpperCase() === Role[role].toString().toUpperCase()

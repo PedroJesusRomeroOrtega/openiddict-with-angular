@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-openId": {
+    "angular-openid": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-openId",
+            "outputPath": "dist/angular-openid",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -74,10 +74,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "angular-openId:build:production"
+              "browserTarget": "angular-openid:build:production"
             },
             "development": {
-              "browserTarget": "angular-openId:build:development",
+              "browserTarget": "angular-openid:build:development",
               "ssl": true,
               "sslKey": "ssl/dev_localhost.key",
               "sslCert": "ssl/dev_localhost.pem"
@@ -88,7 +88,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-openId:build"
+            "browserTarget": "angular-openid:build"
           }
         },
         "test": {
@@ -113,5 +113,5 @@
       }
     }
   },
-  "defaultProject": "angular-openId"
+  "defaultProject": "angular-openid"
 }

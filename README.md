@@ -1,20 +1,20 @@
-# openiddict-with-angular
+# OpenIddict with Angular
 
 An authentication and authorization example with two identity servers, an Angular client and a resource api.
-The two servers are based in [OpenIdDict](https://github.com/openiddict/openiddict-core).
+The two servers are based in [OpenIddict](https://github.com/openiddict/openiddict-core).
 
-## Why use _OpenIdDict_ for the identity servers?
+## Why use _OpenIddict_ for the identity servers?
 
 There are a lot of identity servers, ones of them are made specifically for the .NET ecosystem and others are based in other languages, but can be used too because the identity server should be an independent server specially if we want a SSO (single sign on) approach.
 
 If you think that you will need to personalize the Identity, is better to use a Identity solution based in your principal stack.
-For .NET, the principals Identity solutions are _AAD(Azure Active Directory)_, _Identity Server_ and _OpenIdDict_.
+For .NET, the principals Identity solutions are _AAD(Azure Active Directory)_, _Identity Server_ and _OpenIddict_.
 
 * **AAD**: Is SaaS hosted and free for the first 50000 active user. The const is that you will be tied to Azure.
 * **Identity Server**: Is the most popular, but actually you will have to pay is you need more than 4 client in an enterprise environment. If you think in microservices and a free framework, this isn´t a good solution.
-* **OpenIdDict**: Is a library used to create identity servers. In these days has become more popular because is free. Popular frameworks like OrchardCore used it.
+* **OpenIddict**: Is a library used to create identity servers. In these days has become more popular because is free. Popular frameworks like OrchardCore used it.
 
-So, for this sample I choose _OpenIdDict_ library for the below reasons:
+So, for this sample I choose _OpenIddict_ library for the below reasons:
 * Not tied to a cloud provider.
 * It's free.
 * It's highly customizable.
@@ -28,20 +28,20 @@ The solution has 4 projects:
 
 It's an identity server. 
 It's an Orchard Core project with the [OpenId module](https://docs.orchardcore.net/en/dev/docs/reference/modules/OpenId/) configured.
-It's based on [openiddict-core](https://github.com/openiddict/openiddict-core) and as the [author recommends](https://github.com/openiddict/openiddict-core#i-want-something-simple-and-easy-to-configure) is a good way to configure a simple and easy identity server.
+It's based on [OpenIddict-core](https://github.com/openiddict/openiddict-core) and as the [author recommends](https://github.com/openiddict/openiddict-core#i-want-something-simple-and-easy-to-configure) is a good way to configure a simple and easy identity server.
 
 When you run the project, you can load the identity.recipe.json choosing it in _configuration-Recipes_. In this way all the configuration related with _OpenId_ will be configured automatically.
 
 ### OpenIdServer
 
 It's an other identity server.
-I've used [openiddict-core](https://github.com/openiddict/openiddict-core) and the [Velusia sample](https://github.com/openiddict/openiddict-samples/tree/dev/samples/Velusia)
+I've used [OpenIddict-core](https://github.com/openiddict/openiddict-core) and the [Velusia sample](https://github.com/openiddict/openiddict-samples/tree/dev/samples/Velusia)
 
 Used .Net self-contained UI for Identity. In this way the default views are generated automatically.
 
 For personalization of _login_ and _registry_ I have used the identity scaffold that generates the views in _Areas_ folder.
 
-### angular-openId
+### AngularOpenId
 
 It's a simple _Angular_ app to test how to login and logout with a _code flow + PKCE and silent refresh_ approach.
 For the authentication and authorization process I use [angular-oauth2-oidc](https://github.com/manfredsteyer/angular-oauth2-oidc) library by Manfred Steyer.
@@ -66,17 +66,17 @@ Only if the user id contains the _forecast_ role, the request will be returned w
 Follow the below steps to setup the HTTPS in development:
 
 1. Execute the _CreateAngularDevelopmentCertificate_ to generate the certificate files (dev_localhost.key, dev_localhost.pem, dev_localhost.pfx).
-2. Copy the generated files to _ssl_ folder at root level in _angular-openId_ project
+2. Copy the generated files to _ssl_ folder at root level in _angular-openid_ project
 3. Add ssl configuration to _angular.json_ file
    ``` diff
     "serve": {
         "builder": "@angular-devkit/build-angular:dev-server",
         "configurations": {
         "production": {
-            "browserTarget": "angular-openId:build:production"
+            "browserTarget": "angular-openid:build:production"
         },
         "development": {
-            "browserTarget": "angular-openId:build:development",
+            "browserTarget": "angular-openid:build:development",
    +        "ssl": true,
    +        "sslKey": "ssl/dev_localhost.key",
    +        "sslCert": "ssl/dev_localhost.pem"
@@ -109,9 +109,9 @@ Follow the below steps to setup the HTTPS in development:
 
 The example API is prepaired to work with the two identity server projects.
 
-For _OrchardOpenId_ the _JWT bearer_ schema is used and for _OpendIdServer_, the _openIdDict_ schema is used.
+For _OrchardOpenId_ the _JWT bearer_ schema is used and for _OpendIdServer_, the _OpenIddict_ schema is used.
 
-In my opinion the _openIdDict_ schema is a better solution because use introspection to secure the connection and is the recommeded approach with the _OpenIdDict_ library.
+In my opinion the _OpenIddict_ schema is a better solution because use introspection to secure the connection and is the recommeded approach with the _OpenIddict_ library.
 
 A _forecastPolicy_ is used to authorize the user if _forecast_ is a contained scope.
 

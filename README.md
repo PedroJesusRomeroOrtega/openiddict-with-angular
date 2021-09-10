@@ -10,7 +10,7 @@ There are several identity servers, some of them being made specifically for the
 If there is a chance the identity server needs to be customized it is safer to use a solution based on the stack you are comfortable with.
 For .NET, the most popular identity solutions are _AAD (Azure Active Directory)_, _Identity Server_ and _OpenIddict_.
 
-* **AAD**: It's a SaaS hosted and free for the first 50,000 active users. The caveat is that the solution is dependent on Microsoft Azure.
+* **AAD**: It's hosted (SaaS) and free for the first 50,000 active users. The caveat is that the solution is dependent on Microsoft Azure.
 * **Identity Server**: This is the most popular identity solution in .NET. It is no more free after 4 clients in an enterprise environment.
 * **OpenIddict**: It's a library used to create identity servers. It's very popular since its free. The [OrchardCore](https://github.com/orchardcms/orchardcode) (a SaaS application framework and CMS) uses it.
 

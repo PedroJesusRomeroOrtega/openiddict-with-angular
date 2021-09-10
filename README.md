@@ -12,7 +12,7 @@ For .NET, the most popular identity solutions are _AAD (Azure Active Directory)_
 
 * **AAD**: It's hosted (SaaS) and free for the first 50,000 active users. The caveat is that the solution is dependent on Microsoft Azure.
 * **Identity Server**: This is the most popular identity solution in .NET. It is no more free after 4 clients in an enterprise environment.
-* **OpenIddict**: It's a library used to create identity servers. It's very popular since its free. The [OrchardCore](https://github.com/orchardcms/orchardcode) (a SaaS application framework and CMS) uses it.
+* **OpenIddict**: It's a library used to create identity servers. It's very popular since it's free. The [OrchardCore](https://github.com/orchardcms/orchardcode) (a SaaS application framework and CMS) uses it.
 
 This repository provides sample solutions using the _OpenIddict_ library for the following reasons:
 * Not tied to a cloud provider, host the samples where you want.
@@ -29,7 +29,7 @@ The solution has 4 projects:
 It's an identity server based on the Orchard Core modular framework and the [OpenId module](https://docs.orchardcore.net/en/dev/docs/reference/modules/OpenId/) already configured.
 The module uses [OpenIddict-core](https://github.com/openiddict/openiddict-core) and as the [author recommends](https://github.com/openiddict/openiddict-core#i-want-something-simple-and-easy-to-configure) is a good way to configure a simple and easy identity server.
 
-When you run the project, you can select the __Identity__ recipe, which will load the `identity.recipe.json` containing all the necessary default configuration for an identity server. Once the setup is done, the `/admin` url gives you access to all the settings.
+When you run the project, you can select the __Identity__ recipe, which will load the `identity.recipe.json` containing all the necessary default configuration for an identity server. Once the setup is done, the `/admin` url gives you access to the dashboard.
 
 ### OpenIdServer
 

@@ -5,18 +5,18 @@ The two servers are based in [OpenIddict](https://github.com/openiddict/openiddi
 
 ## Why use _OpenIddict_ for the identity servers?
 
-There are a lot of identity servers, ones of them are made specifically for the .NET ecosystem and others are based in other languages, but can be used too because the identity server should be an independent server specially if we want a SSO (single sign on) approach.
+There are several identity servers, some of them being made specifically for the .NET ecosystem, but the language used doesn't matter since the identity server should be an independent server for an SSO (Single Sign On) approach.
 
-If you think that you will need to personalize the Identity, is better to use a Identity solution based in your principal stack.
-For .NET, the principals Identity solutions are _AAD(Azure Active Directory)_, _Identity Server_ and _OpenIddict_.
+If there is a chance the identity server needs to be customized it is safer to use a solution based on the stack you are comfortable with.
+For .NET, the most popular identity solutions are _AAD (Azure Active Directory)_, _Identity Server_ and _OpenIddict_.
 
-* **AAD**: Is SaaS hosted and free for the first 50000 active user. The const is that you will be tied to Azure.
-* **Identity Server**: Is the most popular, but actually you will have to pay is you need more than 4 client in an enterprise environment. If you think in microservices and a free framework, this isn´t a good solution.
-* **OpenIddict**: Is a library used to create identity servers. In these days has become more popular because is free. Popular frameworks like OrchardCore used it.
+* **AAD**: It's a SaaS hosted and free for the first 50,000 active users. The caveat is that the solution is dependent on Microsoft Azure.
+* **Identity Server**: This is the most popular identity solution in .NET. It is no more free after 4 clients in an enterprise environment.
+* **OpenIddict**: It's a library used to create identity servers. It's very popular since its free. The [OrchardCore](https://github.com/orchardcms/orchardcode) (a SaaS application framework and CMS) uses it.
 
-So, for this sample I choose _OpenIddict_ library for the below reasons:
-* Not tied to a cloud provider.
-* It's free.
+This repository provides sample solutions using the _OpenIddict_ library for the following reasons:
+* Not tied to a cloud provider, host the samples where you want.
+* It's free, whatever the number of clients and users you need to support.
 * It's highly customizable.
 * It's .NET ecosytem friendly.
 
@@ -26,25 +26,21 @@ The solution has 4 projects:
 
 ### OrchardOpenId
 
-It's an identity server. 
-It's an Orchard Core project with the [OpenId module](https://docs.orchardcore.net/en/dev/docs/reference/modules/OpenId/) configured.
-It's based on [OpenIddict-core](https://github.com/openiddict/openiddict-core) and as the [author recommends](https://github.com/openiddict/openiddict-core#i-want-something-simple-and-easy-to-configure) is a good way to configure a simple and easy identity server.
+It's an identity server based on the Orchard Core modular framework and the [OpenId module](https://docs.orchardcore.net/en/dev/docs/reference/modules/OpenId/) already configured.
+The module uses [OpenIddict-core](https://github.com/openiddict/openiddict-core) and as the [author recommends](https://github.com/openiddict/openiddict-core#i-want-something-simple-and-easy-to-configure) is a good way to configure a simple and easy identity server.
 
-When you run the project, you can load the identity.recipe.json choosing it in _configuration-Recipes_. In this way all the configuration related with _OpenId_ will be configured automatically.
+When you run the project, you can select the __Identity__ recipe, which will load the `identity.recipe.json` containing all the necessary default configuration for an identity server. Once the setup is done, the `/admin` url gives you access to all the settings.
 
 ### OpenIdServer
 
-It's an other identity server.
-I've used [OpenIddict-core](https://github.com/openiddict/openiddict-core) and the [Velusia sample](https://github.com/openiddict/openiddict-samples/tree/dev/samples/Velusia)
+It's a custom identity server using [OpenIddict-core](https://github.com/openiddict/openiddict-core) and the [Velusia sample](https://github.com/openiddict/openiddict-samples/tree/dev/samples/Velusia)
 
-Used .Net self-contained UI for Identity. In this way the default views are generated automatically.
-
-For personalization of _login_ and _registry_ I have used the identity scaffold that generates the views in _Areas_ folder.
+It uses the .NET self-contained UI for Identity, with automatically generated views. _login_ and _registry_ are customized using generated views in _Areas_ folder.
 
 ### AngularOpenId
 
 It's a simple _Angular_ app to test how to login and logout with a _code flow + PKCE and silent refresh_ approach.
-For the authentication and authorization process I use [angular-oauth2-oidc](https://github.com/manfredsteyer/angular-oauth2-oidc) library by Manfred Steyer.
+For authentication and authorization it uses the [angular-oauth2-oidc](https://github.com/manfredsteyer/angular-oauth2-oidc) library by Manfred Steyer.
 
 The project has two guards that only let the _principal-feature_ and _optional-feature_ modules be lazy loaded if the user is authenticated.
 
@@ -58,16 +54,16 @@ A button will be shown if the user has an _administrator_ role. For this, a _has
 
 The _optional-feature_ module will redirect to a _noauth_ page if the user is not authenticated.
 
-When the user is authenticated, a request to the _example api_ will be made in order to retrieve the weather forecast. 
-Only if the user id contains the _forecast_ role, the request will be returned with the response.
+When the user is authenticated a request to the _example api_ will be made in order to retrieve the weather forecast. 
+The request will be returned with the response only if the user id contains the _forecast_ role
 
 #### ssl
 
-Follow the below steps to setup the HTTPS in development:
+Follow these steps to setup HTTPS in development:
 
 1. Execute the _CreateAngularDevelopmentCertificate_ to generate the certificate files (dev_localhost.key, dev_localhost.pem, dev_localhost.pfx).
-2. Copy the generated files to _ssl_ folder at root level in _angular-openid_ project
-3. Add ssl configuration to _angular.json_ file
+2. Copy the generated files to the _ssl_ folder at root level in _angular-openid_ project
+3. Add the ssl configuration to the _angular.json_ file
    ``` diff
     "serve": {
         "builder": "@angular-devkit/build-angular:dev-server",
@@ -90,7 +86,7 @@ Follow the below steps to setup the HTTPS in development:
     "start": "ng serve --ssl=false --open",
     "start-with-ssl": "ng serve --open",
    ```
-5. Modify the cors configuration in _startup.cs_ file in _OrchardOpenId_ project
+5. Modify the CORS configuration in the _Startup.cs_ file in _OrchardOpenId_ project
    ``` c#
     services.AddCors(options =>
     {
@@ -103,22 +99,22 @@ Follow the below steps to setup the HTTPS in development:
                             });
     });
    ``` 
-6. In Orchard dashboard, inside _OpenID Connect_ option, choose _applications_ and edit _angularClient_ app. Update the _Redirect and Post Logout Redirect_ uris.
+6. In the Orchard Core dashboard (`/admin`), open the _OpenID Connect_ menu, choose _Applications_ and edit _angularClient_ app. Update the _Redirect and Post Logout Redirect_ URIs.
 
 ### Example API
 
-The example API is prepaired to work with the two identity server projects.
+The sample API is configured to work with the two identity server projects.
 
-For _OrchardOpenId_ the _JWT bearer_ schema is used and for _OpendIdServer_, the _OpenIddict_ schema is used.
+A _JWT bearer_ schema is used with _OrchardOpenId_. For _OpendIdServer_it's the _OpenIddict_ schema which is used.
 
-In my opinion the _OpenIddict_ schema is a better solution because use introspection to secure the connection and is the recommeded approach with the _OpenIddict_ library.
+In my opinion the _OpenIddict_ schema is a better solution because it uses introspection to secure the connection which is the recommeded approach with the _OpenIddict_ library.
 
 A _forecastPolicy_ is used to authorize the user if _forecast_ is a contained scope.
 
 ### CreateAngularDevelopmentCertificate
 
-It's an small console program to generate the certificate files to secure the _Angular SPA_ application.
-I've followed the [DamienBod approach](https://damienbod.com/2020/02/04/creating-certificates-in-net-core-for-vue-js-development-using-https/)
+It's a small console program that generates the certificate files to secure the _Angular SPA_ application.
+It follows the [DamienBod approach](https://damienbod.com/2020/02/04/creating-certificates-in-net-core-for-vue-js-development-using-https/)
 
 ## Run the example
 

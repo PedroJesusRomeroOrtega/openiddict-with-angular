@@ -35,7 +35,7 @@ When you run the project, you can select the __Identity__ recipe, which will loa
 
 It's a custom identity server using [OpenIddict-core](https://github.com/openiddict/openiddict-core) and the [Velusia sample](https://github.com/openiddict/openiddict-samples/tree/dev/samples/Velusia)
 
-It uses the .NET self-contained UI for Identity, with automatically generated views. _login_ and _registry_ are customized using generated views in _Areas_ folder.
+It uses the .NET self-contained UI for Identity with automatically generated views. _login_ and _registry_ are customized using generated views in the _Areas_ folder.
 
 ### AngularOpenId
 
